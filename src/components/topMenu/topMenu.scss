@@ -1,0 +1,62 @@
+.top-menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 50px;
+  background-color: lightblue;
+  border-bottom: grey;
+  display: grid;
+  grid-template-columns: 100px 320px 1fr 150px 50px 80px;
+  grid-template-rows: 50px;
+  grid-template-areas:
+            "A B empty_space C E D"
+}
+
+.top-menu-logo {
+  grid-area: A;
+}
+
+.top-menu-header {
+  grid-area: B;
+}
+
+.top-menu-user {
+  grid-area: C;
+}
+
+.top-menu-cart {
+  grid-area: E;
+}
+
+.top-menu-user-log-out {
+  grid-area: D
+}
+
+.top-menu-header-text {
+  font-size: 40px;
+  font-weight: bold;
+  white-space: nowrap;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.top-menu-user-name-text {
+  font-weight: bold;
+  text-align: center;
+  font-size: 25px;
+}
+
+.top-menu-user-role-text {
+  font-size: 15px;
+  text-align: center;
+}
+
+.cart-icon {
+  margin-top: 10px;
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+}
+
+
+

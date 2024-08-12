@@ -1,0 +1,101 @@
+/* GroupOrderView.scss */
+
+.group-orders {
+    padding: 20px;
+  }
+  
+  .orders-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .order-card {
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(33.333% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  .order-header {
+    background-color: #f0f0f0;
+    padding: 16px;
+    border-bottom: 1px solid #e1e1e1;
+  }
+  
+  .order-header h2 {
+    margin: 0;
+    font-size: 1.25em;
+  }
+  
+  .order-header time {
+    font-size: 0.9em;
+    color: #666;
+  }
+  
+  .order-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to the left */
+
+    p, h3 {
+      width: 100%; // Ensures full width usage which is useful for alignment
+      margin: 4px 0; // Reduces the space above and below each paragraph/header
+      line-height: 1.4; // Adjusts the space between lines of text within the same paragraph/header
+      text-align: left; // Explicitly aligns the text to the left; redundant due to flex-start but can be helpful if there's inherited centering
+    }
+  }
+
+  .status {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #f9f9f9;
+  }
+  
+
+  .status-button {
+    padding: 8px 16px;
+    background-color: #b9452b;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .restaurant-image {
+    display: block; /* Ensures the image is on its own line */
+    width: 100%; /* Full width of the container */
+    height: 150px; /* Fixed height for all images */
+    object-fit: cover; /* Covers the frame of the set width/height, could be 'contain' to fit inside the frame */
+    border-radius: 8px; /* Optional: adds rounded corners */
+    margin-bottom: 1em; /* Adds space below the image */
+  }
+  
+
+
+
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .order-card {
+      width: calc(50% - 20px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .order-card {
+      width: 100%;
+    }
+  }
+  

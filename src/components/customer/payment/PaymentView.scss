@@ -1,0 +1,25 @@
+.payment-form {
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .payment-form input {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .payment-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .payment-message {
+    margin-top: 20px;
+    text-align: center;
+  }

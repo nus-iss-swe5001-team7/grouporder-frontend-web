@@ -1,0 +1,42 @@
+.restaurant {
+  cursor: pointer;
+}
+
+.horizontal {
+  display: inline-block;
+  padding: 0px 10px;
+}
+
+.displayimages {
+
+  border-radius: 20px;
+  border-width: 10px;
+  padding-bottom: 10px;
+  max-height: 130px;
+  max-width: 130px;
+  vertical-align: middle;
+  width: auto;
+  object-fit: cover; /* Covers the frame of the set width/height, could be 'contain' to fit inside the frame */
+  margin-bottom: 1em; /* Adds space below the image */
+  width: 100%; /* Full width of the container */
+  height: 200px; /* Fixed height for all images */
+}
+
+
+.bold-text {
+  font-weight: bold;
+}
+
+// .card {
+//   border-radius: 20px;
+//   border: solid 1px black;
+//   width: 250px;
+//   padding: 10px;
+//   margin: 10px;
+// }
+
+// .card-img {
+//   width: 100%;
+//   border-radius: 20px;
+//   padding-bottom: 10px;
+// }

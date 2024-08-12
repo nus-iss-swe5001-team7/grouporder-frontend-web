@@ -1,0 +1,41 @@
+.main-view-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-area {
+  flex-grow: 1;
+  background-color: #e4e4e4;
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+  grid-template-rows: 50px 1fr;
+}
+
+.full-screen-view {
+  grid-template-areas:
+            "TM TM"
+            "SB FV";
+}
+
+
+.first-view-area {
+  grid-area: FV;
+  background-color: #d8dded;
+  width: 130vh;
+}
+
+.view-area-item {
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.view-area {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  border: 2px solid grey;
+  border-radius: 10px;
+  margin: 1px;
+  padding: 10px;
+  height: 85vh;
+}

@@ -1,0 +1,28 @@
+
+
+
+
+// Z-Index
+
+// MARGINS
+$border-margin: 10px;
+
+// PADDINGS
+$border-padding: 3px;
+
+
+
+.centering-grid {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+        "left top right"
+        "left center right"
+        "left bottom right";
+}
+
+.clickable-item {
+  cursor: pointer;
+}

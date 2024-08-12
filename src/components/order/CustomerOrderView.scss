@@ -1,0 +1,115 @@
+.group-orders {
+  padding: 20px;
+}
+
+.order-header {
+  background-color: #f0f0f0;
+  padding: 16px;
+  // border-bottom: 1px solid #e1e1e1;
+  border-radius: 7px;
+}
+
+.order-header h2 {
+  margin: 0;
+  font-size: 1.25em;
+}
+
+h1 {
+  color: balck;
+  text-align: center;
+}
+
+.order-table {
+    background-color: rgb(254, 255, 255);
+    margin: 30px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Create four equal columns that floats next to each other */
+.order-column {
+  float: left;
+  width: 30%;
+  // width: calc(30% - 15px);
+  padding: 40px;
+}
+
+/* On screens that are 992px wide or less, go from four columns to two columns */
+@media screen and (max-width: 992px) {
+  .order-column {
+    width: 50%;
+  }
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .order-column {
+    width: 100%;
+  }
+}
+
+#order-date{
+  font-size: 15px;
+  color: grey;
+}
+
+.order-item{
+  width: 230px;
+  padding: 10px;
+}
+
+.order-item-desc{
+  font-size: 15px;
+  color: grey;
+  font-weight: normal;
+  padding-left: 10px;
+  width: 230px;
+  height: 100px;
+}
+  
+img {
+  // border: 0.5px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 250px;
+  height: 180px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.orders-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-align:left;
+}
+
+.orders-container2 {
+  padding-left: 30px;
+  width: 100%;
+}
+  
+div, ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.status-button {
+  padding: 8px 16px;
+  background-color: #b9452b;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px; 
+}
+
+.status-button:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
