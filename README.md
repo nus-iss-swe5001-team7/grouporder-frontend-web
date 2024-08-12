@@ -1,6 +1,6 @@
 # Group Food Order Platform
 
-This is the front-end project for Group Food Order Platform.
+This is the front-end (Web) project for Group Food Order Platform.
 
 ## System Design
 
@@ -63,7 +63,7 @@ The project is now ready to run.
    - `$npm run serve`
 
 
-### How to Configure Frontend github CICD 
+### How to Configure Frontend github CICD - INFORMATION TO UPDATE
 Build dist:
 1, build Product version in folder dist:
 sudo npm run build
