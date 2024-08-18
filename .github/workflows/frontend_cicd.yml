@@ -9,51 +9,51 @@ on:
 
 jobs:
 
-  #linting:
-  #  runs-on: ubuntu-latest
+  linting:
+    runs-on: ubuntu-latest
 
-  #  strategy:
-  #    matrix:
-  #      node-version: [16.x]
+    strategy:
+      matrix:
+        node-version: [16.x]
 
-  #  steps:
-  #    - name: Checkout repository
-  #      uses: actions/checkout@v4
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  #    - name: Install after checking out code
-  #      run: |
-  #        npm install
-  #    - name: run eslint
-  #      run: |
-  #        npm run lint
+      - name: Install after checking out code
+        run: |
+          npm install
+      - name: run eslint
+        run: |
+          npm run lint
 
-  #sast_owasp_odc:
-  #  runs-on: ubuntu-latest
+  sast_owasp_odc:
+    runs-on: ubuntu-latest
 
-  #  strategy:
-  #    matrix:
-  #      node-version: [16.x]
+    strategy:
+      matrix:
+        node-version: [16.x]
 
-  #  steps:
-  #    - uses: actions/checkout@v4
+    steps:
+      - uses: actions/checkout@v4
 
-  #    - name: Install Dependencies
-  #      if: steps.cache-nodemodules.outputs.cache-hit != 'true'
-  #      run: |
-  #        npm ci --force
-  #    - name: OWASP Dependency Check
-  #      run: |
-  #        wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.1.0/dependency-check-9.1.0-release.zip
-  #        unzip dependency-check-9.1.0-release.zip
-  #    - name: Run scan with ODC
-  #      run: |
-  #        dependency-check/bin/dependency-check.sh --out . --scan . > ODC-report
-  #    - name: Archive production artifacts
-  #      uses: actions/upload-artifact@v4
-  #      with:
-  #        name: sast report
-  #        path: |
-  #          ./ODC-report
+      - name: Install Dependencies
+        if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+        run: |
+          npm ci --force
+      - name: OWASP Dependency Check
+        run: |
+          wget https://github.com/jeremylong/DependencyCheck/releases/download/v9.1.0/dependency-check-9.1.0-release.zip
+          unzip dependency-check-9.1.0-release.zip
+      - name: Run scan with ODC
+        run: |
+          dependency-check/bin/dependency-check.sh --out . --scan . > ODC-report
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: sast report
+          path: |
+            ./ODC-report
          
 
   snyk:
@@ -77,8 +77,7 @@ jobs:
           args: --sarif-file-output=results.sarif
            
   deploy:
-    #needs: [linting, sast_owasp_odc, snyk]
-    needs: [snyk]
+    needs: [linting, sast_owasp_odc, snyk]
     runs-on: ubuntu-latest
 
     steps:
