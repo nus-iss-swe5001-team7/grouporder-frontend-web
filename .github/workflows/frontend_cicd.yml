@@ -56,28 +56,29 @@ jobs:
   #          ./ODC-report
          
 
-  #snyk:
-  #  runs-on: ubuntu-latest
-  #  permissions:
+  snyk:
+    runs-on: ubuntu-latest
+    permissions:
       # required for all workflows
-  #    security-events: write
+      security-events: write
       # only required for workflows in private repositories
-  #    actions: read
-  #    contents: read
-  #  steps:
-  #    - name: Checkout repository
-  #      uses: actions/checkout@v4
+      actions: read
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-  #    - name: Run Snyk to check for vulnerabilities
-  #      uses: snyk/actions/node@master
-  #      continue-on-error: true # To make sure that SARIF upload gets called
-  #      env:
-  #        SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-  #      with:
-  #         args: --sarif-file-output=results.sarif
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        continue-on-error: true # To make sure that SARIF upload gets called
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
+        with:
+          args: --sarif-file-output=results.sarif
            
   deploy:
     #needs: [linting, sast_owasp_odc, snyk]
+    needs: [snyk]
     runs-on: ubuntu-latest
 
     steps:
