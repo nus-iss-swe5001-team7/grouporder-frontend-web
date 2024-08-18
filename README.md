@@ -62,8 +62,26 @@ The project is now ready to run.
 - Project dependencies installed by executing the following commands:
    - `$npm run serve`
 
+### To connect back to monolithic GroupFoodOrder backend (For reference only)
 
-### How to Configure Frontend github CICD - INFORMATION TO UPDATE
+Run the docker service, refering to: https://github.com/nus-iss-swe5001-team7/sem01/tree/main/gfo-be-monolithic-docker
+
+- Update below 2 js files to run on localhost:
+  - vue.config.js
+    - proxy: 'http://localhost:8081'
+  - baseAPI.js
+    - baseURL: 'http://localhost:5001/'
+   
+Access to the front end by http://localhost:8081
+
+### How to swich from localhost to cloud - ⚠️ INFORMATION TO UPDATE ⚠️
+- Update below 2 js files to run on S3:
+  - vue.config.js
+    - proxy: 'http://x.x.x.x'
+  - baseAPI.js
+    - baseURL: 'http://x.x.x.x'
+
+## How to Configure Frontend github CICD - ⚠️ INFORMATION TO UPDATE ⚠️
 Build dist:
 1, build Product version in folder dist:
 sudo npm run build
@@ -86,17 +104,3 @@ bucekt name: grouporder
 4, create github workflow yml
 frontend_cicd.yml
 
-### How to swich from localhost to cloud
-- Update below 2 js files to run on localhost:
-1, vue.config.js
-proxy: 'http://localhost:8081'
-
-2, baseAPI.js
-baseURL: 'http://localhost:8081/'
-
-- Update below 2 js files to run on S3:
-1, vue.config.js
-proxy: 'http://3.211.129.88'
-
-2, baseAPI.js
-baseURL: 'http://3.211.129.88/'
