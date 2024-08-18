@@ -98,7 +98,7 @@ jobs:
 
       - name: Deploy to S3
         run: |
-          aws s3 sync ./dist s3://grouporderplatform
+          aws s3 sync ./dist s3://groupfoodorder
           
   zap_scan:
     needs: deploy
