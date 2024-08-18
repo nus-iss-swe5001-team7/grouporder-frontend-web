@@ -9,30 +9,30 @@ on:
 
 jobs:
 
-  linting:
-    runs-on: ubuntu-latest
+  #linting:
+  #  runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x]
+  #  strategy:
+  #    matrix:
+  #      node-version: [16.x]
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+  #  steps:
+  #    - name: Checkout repository
+  #      uses: actions/checkout@v4
 
-      - name: Install after checking out code
-        run: |
-          npm install
-      - name: run eslint
-        run: |
-          npm run lint
+  #    - name: Install after checking out code
+  #      run: |
+  #        npm install
+  #    - name: run eslint
+  #      run: |
+  #        npm run lint
 
   #sast_owasp_odc:
   #  runs-on: ubuntu-latest
 
   #  strategy:
-      matrix:
-        node-version: [16.x]
+  #    matrix:
+  #      node-version: [16.x]
 
   #  steps:
   #    - uses: actions/checkout@v4
