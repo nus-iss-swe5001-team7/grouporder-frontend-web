@@ -15,7 +15,7 @@
     "services": "^0.0.3",
     "stores": "^1.0.0",
     "vue": "^3.4.15",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
