@@ -10,7 +10,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.2",
     "axios": "^1.6.8",
-    "core-js": "^3.8.3",
+    "core-js": "^3.37.1",
     "cors": "^2.8.5",
     "services": "^0.0.3",
     "stores": "^1.0.0",
