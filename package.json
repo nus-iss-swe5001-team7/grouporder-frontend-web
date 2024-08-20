@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "services": "^0.0.3",
     "stores": "^1.0.0",
-    "vue": "^3.4.15",
+    "vue": "^3.4.34",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
