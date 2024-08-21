@@ -1,7 +1,7 @@
 import Api from "@/services/api/baseAPI";
 
-const USER = '/user';
-const LOGIN = '/login'
+const USER = '/user-service/user/register';
+const LOGIN = '/user-service/user/login'
 export default {
     createUser: (user) => Api().post(USER, user),
     loginUser: (user) => Api().post(LOGIN, user),
