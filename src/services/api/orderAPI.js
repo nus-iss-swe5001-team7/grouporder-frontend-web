@@ -1,6 +1,6 @@
 import Api from "@/services/api/baseAPI";
 
-const Order = '/groupFoodOrder';
+const Order = '/order-service/groupFoodOrdersAPI/groupFoodOrder';
 
 export default {
     sendOrder: (order) => Api().post(Order, order),
