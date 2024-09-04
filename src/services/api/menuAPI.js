@@ -1,7 +1,6 @@
 import Api from "@/services/api/baseAPI";
 
-const Menu = '/menu';
-
+const Menu = '/order-service/menuAPI/menu';
 export default {
     getAllMenus: ()=> Api().get(Menu)
 }
