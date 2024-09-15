@@ -1,3 +1,4 @@
+import {MenuModel} from "@/entity/MenuModel";
 
 export class RestaurantModel {
     constructor(config) {
@@ -8,5 +9,6 @@ export class RestaurantModel {
         this.rating = config.rating;
         this.restaurantImgURL = config.restaurantImgURL;
         this.cuisineType = config.cuisineType;
+        this.menus = config.menus ? config.menus.map(menu => new MenuModel(menu)) : [];
     }
 }

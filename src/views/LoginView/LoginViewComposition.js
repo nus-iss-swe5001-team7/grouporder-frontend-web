@@ -1,6 +1,6 @@
 import {computed, onMounted, ref, watch} from "vue";
 import {UserModel} from "@/entity/UserModel";
-import {userStore} from "@/stores/stores.js";
+import {restaurantStore, userStore} from "@/stores/stores.js";
 import routers from "@/routers/routers";
 
 
@@ -53,11 +53,14 @@ export class LoginViewComposition {
         if (!this.hasAccount.value) {
             userStore.registerUser(user).then(response => {
                 userStore.setAuthenticated(response.data);
+                localStorage.setItem('jwtToken', response.data.token);
                 routers.push('/main');
             }).catch(error => alert(error.response.data));
         } else {
             userStore.loginUser(user).then(response => {
                 userStore.setAuthenticated(response.data);
+                localStorage.setItem('jwtToken', response.data.token);
+                restaurantStore.init();
                 routers.push('/main');
             }).catch(error => alert(error.response.data));
         }

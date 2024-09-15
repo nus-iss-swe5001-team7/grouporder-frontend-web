@@ -1,12 +1,7 @@
 import Api from "@/services/api/baseAPI";
 
-const allRestaurants = '/restaurant-service/restaurant/restaurants';
+const allRestaurants = '/restaurant-service/restaurants/all';
 
 export default {
     getAllRestaurants: () => Api().get(allRestaurants)
 };
-
-// const Restaurants = '/restaurants';
-// export default {
-//     getRestaurants: ()=> Api().get(Restaurants)
-// }

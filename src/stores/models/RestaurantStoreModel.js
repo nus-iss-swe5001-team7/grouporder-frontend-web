@@ -3,12 +3,16 @@ import {RestaurantModel} from "@/entity/RestaurantModel";
 
 export class RestaurantStoreModel {
     constructor() {
-        this.init();
+        this.restaurants = [];
         this.selectedRestaurantId = null;
     }
 
     getRestaurants() {
         return this.restaurants;
+    }
+
+    getRestaurantById(id) {
+        return this.restaurants.find(restaurant => restaurant.id === id);
     }
 
     getSelectedRestaurant() {

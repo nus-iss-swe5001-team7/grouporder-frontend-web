@@ -1,18 +1,12 @@
-import MenuAPI from "@/services/api/menuAPI";
-import {MenuModel} from "@/entity/MenuModel";
+import {restaurantStore} from "@/stores/stores";
 
 export class MenuStoreModel {
     constructor() {
         this.allMenus = [];
-        this.init();
-    }
-
-    init(){
-        MenuAPI.getAllMenus().then(response => this.allMenus = generateMenuModels(response.data));
     }
 
     retrieveMenu(restaurantId) {
-        return restaurantId ? this.allMenus.filter(menu => menu.restaurantId === restaurantId) : [];
+        return restaurantId ? restaurantStore.getRestaurantById(restaurantId).menus : [];
     }
 
     getAllMenus() {
@@ -26,8 +20,4 @@ export class MenuStoreModel {
     getUnitPrice(itemId) {
         return this.allMenus.find(menu => menu.id === itemId).menuPrice;
     }
-}
-
-function generateMenuModels(menuDataList) {
-    return menuDataList.map(menuData => new MenuModel(menuData));
 }
