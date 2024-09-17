@@ -7,7 +7,7 @@ export default () => {
     if (stagingAPI) {
         url = stagingAPI
     } else {
-        url = 'http://3.211.129.88/';
+        url = 'http://localhost:8765';
     }
     // console.log(url);
     return axios.create({
