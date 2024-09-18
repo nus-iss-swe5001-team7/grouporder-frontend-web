@@ -54,6 +54,7 @@ export class LoginViewComposition {
             userStore.registerUser(user).then(response => {
                 userStore.setAuthenticated(response.data);
                 localStorage.setItem('jwtToken', response.data.token);
+                restaurantStore.init();
                 routers.push('/main');
             }).catch(error => alert(error.response.data));
         } else {

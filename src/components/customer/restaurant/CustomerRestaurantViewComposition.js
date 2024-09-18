@@ -1,5 +1,5 @@
 import {cartStore, restaurantStore, uiStore} from "@/stores/stores";
-import {computed, onMounted, ref} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import {STEPS} from "@/constants/applicationConstants";
 
 export class CustomerRestaurantViewComposition {
@@ -14,15 +14,23 @@ export class CustomerRestaurantViewComposition {
         this.selectedLocation = "all";
         this.selectedRestaurantName = "all";
 
+        onMounted(() => {
+            this.restaurants.value = restaurantStore.getRestaurants();
+            this.sortRestaurant();
+        });
+
+        watch(this.restaurants, () => {
+            this.sortRestaurant();
+        }, { immediate: true });
+
+        this.sortRestaurant();
+    }
+
+    sortRestaurant() {
         for (let restaurant of this.restaurants.value) {
             this.filteredRestaurants.value.push(restaurant);
             this.sortByRating();
         }
-
-        onMounted(() => {
-            this.restaurants.value = computed(() => restaurantStore.getRestaurants());
-        });
-
     }
 
     filterDisplay() {
