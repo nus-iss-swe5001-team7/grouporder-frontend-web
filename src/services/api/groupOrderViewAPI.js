@@ -7,7 +7,7 @@ export default {
 
     getInfoForGroupOrder: (groupOrderId) => Api().get(`/getInfoForGroupOrder?groupOrderId=${groupOrderId}`),
 
-    getAllPendingJoinGroupOrders: (userId) => Api().get(`/getAllPendingJoinGroupOrders?userId=${userId}`),
+    getAllPendingJoinGroupOrders: (userId) => Api().get(`/order-service/groupFoodOrdersAPI/getAllPendingJoinGroupOrders?userId=${userId}`),
 
     getOrdersForRestaurantStaff : (userId, restaurantId) => Api().get((`/getOrdersForRestaurantStaff?userId=${userId}&restaurantId=${restaurantId}`)),
 
