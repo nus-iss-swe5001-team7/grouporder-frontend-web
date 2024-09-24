@@ -108,7 +108,8 @@ export class PaymentViewComposition {
                 }
             }).catch(error => {
                 reset();
-                alert(error.response.data);
+                //alert(error.response.data);
+                console.error(error);
                 paymentStore.paymentRequired = false;
                 paymentStore.paymentPending = false;
                 orderListStore.getAllGroupOrders();

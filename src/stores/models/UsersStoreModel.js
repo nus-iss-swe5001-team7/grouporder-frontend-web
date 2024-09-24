@@ -48,12 +48,11 @@ export class UsersStoreModel {
     }
 
     logOutUser() {
-
-        const username = this.name; // Assuming this.name is the username you want to send
-        UserAPI.logoutUser(username)
+        const token = localStorage.getItem('jwtToken');
+        UserAPI.logoutUser(token)
             .then(response => {
                 if (response.status === 200) {
-                    console.log(response.data.message); // "User successfully logged out"
+                    console.log(response.data); // "User successfully logged out"
                     // Perform logout operations here, e.g., clearing user data
                     this.init(); // Reset user store to initial state
                     cartStore.init();

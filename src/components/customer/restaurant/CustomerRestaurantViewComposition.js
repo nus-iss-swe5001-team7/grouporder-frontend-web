@@ -1,15 +1,11 @@
 import {cartStore, restaurantStore, uiStore} from "@/stores/stores";
-import {computed} from "vue";
+import {computed, onMounted, ref, watch} from "vue";
 import {STEPS} from "@/constants/applicationConstants";
-
-import {ref} from "vue";
-// import RestaurantAPI from "@/services/api/restaurantAPI.js";
 
 export class CustomerRestaurantViewComposition {
 
     // // dummy data
     constructor() {
-        // this.restaurants = ref([]);
         this.restaurants = computed(() => restaurantStore.getRestaurants());
         this.filteredRestaurants = ref([]);
         this.sortOrderLabel = ref("Ascending");
@@ -18,19 +14,30 @@ export class CustomerRestaurantViewComposition {
         this.selectedLocation = "all";
         this.selectedRestaurantName = "all";
 
+        onMounted(() => {
+            this.restaurants.value = restaurantStore.getRestaurants();
+            this.sortRestaurant();
+        });
 
+        watch(this.restaurants, () => {
+            this.sortRestaurant();
+        }, { immediate: true });
+
+        this.sortRestaurant();
+    }
+
+    sortRestaurant() {
         for (let restaurant of this.restaurants.value) {
             this.filteredRestaurants.value.push(restaurant);
             this.sortByRating();
         }
-        
     }
 
     filterDisplay() {
         while (this.filteredRestaurants.value.length > 0) {
             this.filteredRestaurants.value.pop()
         }
-            
+
         for (let restaurant of this.restaurants.value) {
             const isCuisineMatch = this.selectedCuisineType === 'all' || restaurant.cuisineType === this.selectedCuisineType;
             const isLocationMatch = this.selectedLocation === 'all' || restaurant.location === this.selectedLocation;
@@ -45,7 +52,7 @@ export class CustomerRestaurantViewComposition {
         console.log(this.filteredRestaurants.value)
     }
 
-    
+
 
     sortByRating() {
         if (this.filteredRestaurants.value.length > 1) {
@@ -82,16 +89,3 @@ export class CustomerRestaurantViewComposition {
     }
 
 }
-
-
-// export class CustomerRestaurantViewComposition {
-
-//     constructor() {
-//         this.restaurants = computed(() => restaurantStore.getRestaurants());
-//     }
-
-//     selectRestaurant(restaurant) {
-//         restaurantStore.setSelectedRestaurantId(restaurant.id);
-//     }
-
-// }

@@ -1,3 +1,4 @@
+import {restaurantStore} from "@/stores/stores";
 import MenuAPI from "@/services/api/menuAPI";
 import {MenuModel} from "@/entity/MenuModel";
 
@@ -12,7 +13,7 @@ export class MenuStoreModel {
     }
 
     retrieveMenu(restaurantId) {
-        return restaurantId ? this.allMenus.filter(menu => menu.restaurantId === restaurantId) : [];
+        return restaurantId ? restaurantStore.getRestaurantById(restaurantId).menus : [];
     }
 
     getAllMenus() {
