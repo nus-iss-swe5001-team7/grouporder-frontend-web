@@ -7,7 +7,7 @@ export default {
 
     getTimerForGroupOrder: (groupOrderId) =>  Api().get(`/timer?parameter=${groupOrderId}`),
 
-    getGroupOrdersByUserId: (userId) =>  Api().get(`/groupOrders?parameter=${userId}`),
+    getGroupOrdersByUserId: (userId) =>  Api().get(`/order-service/groupFoodOrdersAPI/groupOrders?parameter=${userId}`),
 
     updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/submittedToRestaurant/${orderId}`),
 
