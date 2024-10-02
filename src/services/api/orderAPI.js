@@ -9,7 +9,7 @@ export default {
 
     getGroupOrdersByUserId: (userId) =>  Api().get(`/order-service/groupFoodOrdersAPI/groupOrders?parameter=${userId}`),
 
-    updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/submittedToRestaurant/${orderId}`),
+    updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/submittedToRestaurant/${orderId}`),
 
     updateStatusToOrderCancel: (orderId) => Api().put(`/orderCancel/${orderId}`),
 
