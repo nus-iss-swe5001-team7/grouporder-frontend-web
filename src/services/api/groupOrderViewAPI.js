@@ -5,7 +5,7 @@ const allGroupOrder = '/order-service/groupFoodOrdersAPI/getAllGroupOrders';
 export default {
     getGroupOrder: () => Api().get(allGroupOrder),
 
-    getInfoForGroupOrder: (groupOrderId) => Api().get(`/getInfoForGroupOrder?groupOrderId=${groupOrderId}`),
+    getInfoForGroupOrder: (groupOrderId) => Api().get(`/order-service/groupFoodOrdersAPI/getInfoForGroupOrder?groupOrderId=${groupOrderId}`),
 
     getAllPendingJoinGroupOrders: (userId) => Api().get(`/order-service/groupFoodOrdersAPI/getAllPendingJoinGroupOrders?userId=${userId}`),
 
