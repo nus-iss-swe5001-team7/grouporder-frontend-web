@@ -5,7 +5,7 @@ import {MenuModel} from "@/entity/MenuModel";
 export class MenuStoreModel {
     constructor() {
         this.allMenus = [];
-        this.init();
+        // this.init();
     }
 
     init(){
@@ -21,6 +21,8 @@ export class MenuStoreModel {
     }
 
     getItemUrl(itemId) {
+        console.log("getItemUrl :=== menuId: " + itemId);
+        console.log("this.allMenus.find(menu => menu.id === itemId): " + this.allMenus.find(menu => menu.id === itemId));
         return this.allMenus.find(menu => menu.id === itemId).menuImageURL;
     }
 
