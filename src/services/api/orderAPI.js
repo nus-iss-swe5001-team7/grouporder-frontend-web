@@ -5,8 +5,6 @@ const Order = '/order-service/groupFoodOrdersAPI/groupFoodOrder';
 export default {
     sendOrder: (order) => Api().post(Order, order),
 
-    getTimerForGroupOrder: (groupOrderId) =>  Api().get(`/timer?parameter=${groupOrderId}`),
-
     getGroupOrdersByUserId: (userId) =>  Api().get(`/order-service/groupFoodOrdersAPI/groupOrders?parameter=${userId}`),
 
     updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/submittedToRestaurant/${orderId}`),

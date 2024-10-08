@@ -3,7 +3,6 @@ import {RestaurantModel} from "@/entity/RestaurantModel";
 
 export class RestaurantStoreModel {
     constructor() {
-        this.init();
         this.restaurants = [];
         this.selectedRestaurantId = null;
     }
@@ -42,7 +41,7 @@ export class RestaurantStoreModel {
             this.restaurants = generateRestaurantModels(response.data);
             //console.log("getAllRestaurants:===" + response.data);
         });
-       
+
     }
 }
 

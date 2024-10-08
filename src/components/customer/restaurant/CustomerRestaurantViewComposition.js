@@ -4,7 +4,6 @@ import {STEPS} from "@/constants/applicationConstants";
 
 export class CustomerRestaurantViewComposition {
 
-    // // dummy data
     constructor() {
         this.restaurants = computed(() => restaurantStore.getRestaurants());
         this.filteredRestaurants = ref([]);
@@ -27,6 +26,7 @@ export class CustomerRestaurantViewComposition {
     }
 
     sortRestaurant() {
+        this.filteredRestaurants.value = [];
         for (let restaurant of this.restaurants.value) {
             this.filteredRestaurants.value.push(restaurant);
             this.sortByRating();
