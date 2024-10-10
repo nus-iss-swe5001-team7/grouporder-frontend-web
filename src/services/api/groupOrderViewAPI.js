@@ -11,7 +11,7 @@ export default {
 
     getOrdersForRestaurantStaff : (userId, restaurantId) => Api().get((`/getOrdersForRestaurantStaff?userId=${userId}&restaurantId=${restaurantId}`)),
 
-    getOrdersForDeliveryStaff : (userId, location) => Api().get((`/getOrdersForDeliveryStaff?userId=${userId}&location=${location}`))
+    getOrdersForDeliveryStaff : (userId, location) => Api().get((`/delivery-service/deliveryAPI/getAllGroupOrdersForDelivery?userId=${userId}&location=${location}`))
 
 
 };
