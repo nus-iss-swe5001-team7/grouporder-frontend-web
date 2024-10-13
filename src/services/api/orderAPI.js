@@ -15,9 +15,9 @@ export default {
 
     updateStatusToReadyForDelivery: (orderId) => Api().put(`/readyForDelivery/${orderId}`),
 
-    updateStatusToOnDelivery: (orderId) => Api().put(`/onDelivered/${orderId}`),
+    updateStatusToOnDelivery: (orderId) => Api().put(`/delivery-service/deliveryAPI/onDelivered/${orderId}`),
 
-    updateStatusToDelivered: (orderId) => Api().put(`/delivered/${orderId}`),
+    updateStatusToDelivered: (orderId) => Api().put(`/delivery-service/deliveryAPI/delivered/${orderId}`),
 
     deleteOrder: (orderId) =>  Api().put(`/deleteOrder?parameter=${orderId}`),
 
