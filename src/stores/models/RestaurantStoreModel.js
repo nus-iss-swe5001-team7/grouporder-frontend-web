@@ -42,7 +42,7 @@ export class RestaurantStoreModel {
             this.restaurants = generateRestaurantModels(response.data);
             //console.log("getAllRestaurants:===" + response.data);
         });
-       
+
     }
 }
 

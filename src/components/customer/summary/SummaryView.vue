@@ -11,7 +11,7 @@
               :key="items.menuId"
               class="items-style">
             <div class="cart-items">
-              <img class="item" :src="composition.getItemUrl(items.menuId)" width="50px" height="50px" style="border-radius: 50%"/>
+              <img class="item" :src="items.menuImageURL" width="50px" height="50px" style="border-radius: 50%; object-fit: cover"/>
               <span class="items-content">{{ items.name }}</span>
               <div>
                 <button class="quantity-change-button" @click="composition.removeItem(items)" type="button"> -</button>

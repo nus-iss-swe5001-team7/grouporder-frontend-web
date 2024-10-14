@@ -1,5 +1,5 @@
 import {orderStore, userStore} from '@/stores/stores';
-import {ref, computed, onMounted, onUnmounted} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {ORDER_STATUS, RESTAURANT_RATING} from "@/constants/applicationConstants";
 import GroupOrderViewAPI from "@/services/api/groupOrderViewAPI";
 
@@ -17,6 +17,21 @@ export class CustomerOrderViewComposition{
         onMounted(() => this.startTimers());
         onUnmounted(() => this.deleteIntervals());
 
+    }
+
+    startTimers() {
+        this.interval = setInterval(() => {
+            this.fetchOrders.value.forEach(order => {
+                order.remainingTime = this.getRemainingTime(order.orderTime);
+            });
+        }, 1000);
+    }
+
+    getRemainingTime(orderTime) {
+        const currentTime = new Date().getTime();
+        const orderTimeInMs = new Date(orderTime).getTime();
+        const tenMinutesInMs = 10 * 60 * 1000; // 10 minutes in milliseconds
+        return Math.max(0, Math.floor((orderTimeInMs + tenMinutesInMs - currentTime) / 1000));
     }
 
     updateStatusToSubmittedToRestaurant(orderId)  {
@@ -38,13 +53,13 @@ export class CustomerOrderViewComposition{
         );
     }
 
-    getTimer(groupFoodOrderId) {
-        orderStore.getTimerForGroupOrder(groupFoodOrderId);
-        return this.formatTime(orderStore.remainingTimes[groupFoodOrderId]);
-    }
-
     refreshOrder() {
         orderStore.getGroupOrdersByUserId(userStore.userId);
+    }
+
+    needToReloadOrders(groupFoodOrderId) {
+        GroupOrderViewAPI.getInfoForGroupOrder(groupFoodOrderId).then(response => this.status = response.data.status);
+        return this.fetchOrders.value.some(order => order.remainingTime === 0) || (this.status === ORDER_STATUS.SUBMITTED_TO_RESTAURANT.status);
     }
 
     formatTime(time) {
@@ -53,26 +68,8 @@ export class CustomerOrderViewComposition{
         return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 
-    startTimers() {
-        this.timerInterval = setInterval(async () => {
-            for (const groupFoodOrderId of Object.keys(orderStore.remainingTimes)) {
-                await orderStore.getTimerForGroupOrder(groupFoodOrderId);
-                if (this.needToReloadOrders(groupFoodOrderId)) {
-                    await orderStore.getGroupOrdersByUserId(userStore.userId);
-                    delete orderStore.remainingTimes[groupFoodOrderId];
-                }
-            }
-        }, 1000);
-    }
-
-    needToReloadOrders(groupFoodOrderId) {
-        GroupOrderViewAPI.getInfoForGroupOrder(groupFoodOrderId).then(response => this.status = response.data.status);
-
-        return orderStore.remainingTimes[groupFoodOrderId] === 0 || (this.status === ORDER_STATUS.SUBMITTED_TO_RESTAURANT.status);
-    }
-
     deleteIntervals() {
-        clearInterval(this.timerInterval);
+        clearInterval(this.interval);
     }
 
     filteredGroupOrders = computed(() => {

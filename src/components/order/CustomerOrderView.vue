@@ -46,7 +46,7 @@
                           <button v-if="order.orderStatus=='PENDING_USER_JOIN'" title="Refresh to get latest status!" @click="composition.refreshOrder()">
                             <i class="fas fa-sync-alt"></i>
                           </button></p>
-                        <p v-if="order.orderStatus=='PENDING_USER_JOIN'">Time remaining: {{ composition.getTimer(order.groupFoodOrderId) }}</p>
+                        <p v-if="order.orderStatus=='PENDING_USER_JOIN'">Time remaining: {{ composition.formatTime(order.remainingTime) }}</p>
                         <p>
                             <button class="status-button" v-if="order.orderStatus=='PENDING_USER_JOIN'"
                                   @click="composition.updateStatusToSubmittedToRestaurant(order.groupFoodOrderId)">Send to Restaurant</button>
@@ -67,41 +67,7 @@ const composition = new CustomerOrderViewComposition();
 const {filteredGroupOrders} = composition;
 
 
-//start Countdown for updateStatusToSubmittedToRestaurant
 
-//onMounted(() => {
- //   const timerInterval =setInterval(() => { composition.startTimers() }, 1000);
-  //  console.log("timerInterval====6.1---"+timerInterval);
-  //  return () => clearInterval(timerInterval);
-   //clearInterval(timerInterval);
-//})
-/*
-onMounted(() => {
-  const timerInterval = setInterval(() => {
-    composition.startTimers();
-    if (isAllTimersStopped()) {
-        console.log("clearInterval---2");
-      clearInterval(timerInterval);
-    }
-  }, 1000);
-
-  return () => clearInterval(timerInterval);
-});
-
-function isAllTimersStopped() {
-  for (const orderId in composition.remainingTimes) {
-    if (composition.remainingTimes[orderId].value > 0) {
-      console.log("remainingTimes is false for "+orderId);
-      return false; // At least one timer is still running
-    }
-  }
-  console.log("isAllTimersStopped---1");
-  return true; // All timers are stopped
-}
-*/
-//end Countdown for updateStatusToSubmittedToRestaurant
-
-//Start filter order by Status, Location and Rating
 import { ORDER_STATUS, RESTAURANT_LOCATIONS, RESTAURANT_RATING } from "@/constants/applicationConstants";
 import { ref, watch } from 'vue';
 const selectedStatus = ref('PENDING_USER_JOIN');
