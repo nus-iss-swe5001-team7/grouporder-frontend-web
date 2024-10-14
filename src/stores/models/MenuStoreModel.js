@@ -3,11 +3,6 @@ import {restaurantStore} from "@/stores/stores";
 export class MenuStoreModel {
     constructor() {
         this.allMenus = [];
-        // this.init();
-    }
-
-    init(){
-        MenuAPI.getAllMenus().then(response => this.allMenus = generateMenuModels(response.data));
     }
 
     retrieveMenu(restaurantId) {
