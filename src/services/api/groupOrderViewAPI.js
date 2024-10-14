@@ -9,7 +9,7 @@ export default {
 
     getAllPendingJoinGroupOrders: (userId) => Api().get(`/order-service/groupFoodOrdersAPI/getAllPendingJoinGroupOrders?userId=${userId}`),
 
-    getOrdersForRestaurantStaff : (userId, restaurantId) => Api().get((`/getOrdersForRestaurantStaff?userId=${userId}&restaurantId=${restaurantId}`)),
+    getOrdersForRestaurantStaff : (userId, restaurantId) => Api().get((`/order-service/groupFoodOrdersAPI/getOrdersForRestaurantStaff?userId=${userId}&restaurantId=${restaurantId}`)),
 
     getOrdersForDeliveryStaff : (userId, location) => Api().get((`/delivery-service/deliveryAPI/getAllGroupOrdersForDelivery?userId=${userId}&location=${location}`))
 
