@@ -3,6 +3,7 @@ import {RestaurantModel} from "@/entity/RestaurantModel";
 
 export class RestaurantStoreModel {
     constructor() {
+        // this.init();
         this.restaurants = [];
         this.selectedRestaurantId = null;
     }
