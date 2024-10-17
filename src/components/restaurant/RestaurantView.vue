@@ -46,11 +46,11 @@ import { ref, watch, reactive, onMounted } from 'vue';
 import { RestaurantViewComposition } from "@/components/restaurant/RestaurantViewComposition";
 
 const restaurants = reactive([
-    { id: '6702b2198c739d7c1ab0be49', name: 'Malay Delight' },
-    { id: '6702b2198c739d7c1ab0be4d', name: 'Dumpling House' },
-    { id: '6702b2198c739d7c1ab0be52', name: 'Thai Spice' },
-    { id: '6702b2198c739d7c1ab0be54', name: 'Eastern Tandoori Palace' },
-    { id: '6702b2198c739d7c1ab0be56', name: 'West Tempura House' },
+    { id: '6711074323ad9d42043cff5a', name: 'Malay Delight' },
+    { id: '6711074323ad9d42043cff5e', name: 'Dumpling House' },
+    { id: '6711074323ad9d42043cff63', name: 'Thai Spice' },
+    { id: '6711074323ad9d42043cff65', name: 'Eastern Tandoori Palace' },
+    { id: '6711074323ad9d42043cff67', name: 'West Tempura House' },
 ]);
 
 
