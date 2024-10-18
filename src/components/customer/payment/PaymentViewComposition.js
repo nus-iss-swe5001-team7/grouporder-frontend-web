@@ -82,11 +82,11 @@ export class PaymentViewComposition {
             var paymentDetails = {
                 "orderItemId": orderItemId,
                 "paymentStatus": "PENDING",
-                "isGroupFoodOrder": this.isGroupFoodOrder,
-                "isGetPromo": this.usePromo,
+                "isGroupFoodOrder": this.isGroupFoodOrder.value,
+                "isGetPromo": this.usePromo.value,
                 "totalPrice": this.totalPrice.value,
-                "forShow": this.forShow,
-                "paymentType": this.selectedPaymentOption,
+                "forShow": this.forShow.value,
+                "paymentType": this.selectedPaymentOption.value,
                 "creditCardNumber": this.creditCardNumber.value,
                 "expiryDate": this.expiryDate.value,
                 "cvv": this.cvv.value,
@@ -108,7 +108,8 @@ export class PaymentViewComposition {
                 }
             }).catch(error => {
                 reset();
-                alert(error.response.data);
+                //alert(error.response.data);
+                console.error(error);
                 paymentStore.paymentRequired = false;
                 paymentStore.paymentPending = false;
                 orderListStore.getAllGroupOrders();

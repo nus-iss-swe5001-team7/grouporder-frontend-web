@@ -3,12 +3,17 @@ import {RestaurantModel} from "@/entity/RestaurantModel";
 
 export class RestaurantStoreModel {
     constructor() {
-        this.init();
+        // this.init();
+        this.restaurants = [];
         this.selectedRestaurantId = null;
     }
 
     getRestaurants() {
         return this.restaurants;
+    }
+
+    getRestaurantById(id) {
+        return this.restaurants.find(restaurant => restaurant.id === id);
     }
 
     getSelectedRestaurant() {
@@ -34,11 +39,14 @@ export class RestaurantStoreModel {
     init() {
         RestaurantAPI.getAllRestaurants()
         .then(response => {
-            this.restaurants = generateRestaurantModels(response.data)
+            this.restaurants = generateRestaurantModels(response.data);
+            //console.log("getAllRestaurants:===" + response.data);
         });
+
     }
 }
 
 function generateRestaurantModels(restaurantDataList) {
+    //console.log("generateRestaurantModels:===" + restaurantDataList);
     return restaurantDataList.map(restaurantData => new RestaurantModel(restaurantData));
 }

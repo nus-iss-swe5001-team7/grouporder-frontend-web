@@ -27,10 +27,10 @@
           </div>
           <div class="horizontal">
               <label for="restaurant_name">Restaurant Name: </label>
-              <select name="restaurant_name" id="restaurant_name"> 
+              <select name="restaurant_name" id="restaurant_name">
                   <option value="all">All</option>
                   <option v-for="restaurant in composition.restaurants.value"  v-bind:value="restaurant.restaurantName" v-bind:key="restaurant.restaurantById">
-                      {{ restaurant.restaurantName }} 
+                      {{ restaurant.restaurantName }}
                   </option>
               </select>
           </div>
@@ -38,15 +38,6 @@
         <br>
     </div>
 
-    <!-- <div v-for="restaurant in composition.filteredRestaurants.value"
-         :key="restaurant.id"
-         v-bind:title="restaurant.restaurantName"
-         @click="composition.selectRestaurant(restaurant)"
-         class="restaurant">
-      <span>{{ restaurant.restaurantName }}</span>
-    </div>
-     -->
-    <!-- Display All restaurants -->
     <div name="display" id="display">
       <div class="horizontal">
           <label for="restaurant_name">Sort By Rating</label>
@@ -74,36 +65,19 @@
       </div>
     </div>
   </div>
-    <!-- xxxxxxx -->
-    <!-- <div v-for="menu in menus"
-           :key="menu.id"
-           :title="menu.menuName"
-           class="card">
-        <img class="card-img" :src="menu.menuImageURL">
-        <p>
-          <span>{{ menu.menuName }}</span>
-          <span> ${{ menu.menuPrice }}</span>
-          <button class="add-basket"
-                  @click="composition.addToCart(menu)">
-            Add
-          </button>
-        </p>
-    </div> -->
-    <!-- xxxxxxx -->
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import {computed, onMounted} from 'vue'
 import {CustomerRestaurantViewComposition} from "@/components/customer/restaurant/CustomerRestaurantViewComposition";
-
-// const composition = new CustomerRestaurantViewComposition();
-
-// const {restaurants} = composition;
+import {restaurantStore} from "@/stores/stores";
 
 const composition = new CustomerRestaurantViewComposition();
 
-
 onMounted(() => {
+
+  composition.restaurants.value = computed(() => restaurantStore.getRestaurants());
+
   document.getElementById('cuisine_type').addEventListener('change', function() {
       // Get the selected option's value
       composition.selectedCuisineType = this.value;
@@ -128,52 +102,6 @@ onMounted(() => {
 
 })
 
-// function filterDisplay() {
-//     while (composition.filteredRestaurants.value.length > 0) {
-//         composition.filteredRestaurants.value.pop()
-//     }
-        
-//     for (let restaurant of composition.restaurants.value) {
-//         const isCuisineMatch = selectedCuisineType === 'all' || restaurant.cuisineType === selectedCuisineType;
-//         const isLocationMatch = selectedLocation === 'all' || restaurant.location === selectedLocation;
-//         const isRestaurantNameMatch = selectedRestaurantName === 'all' || restaurant.restaurantName === selectedRestaurantName;
-
-//         if (isCuisineMatch && isLocationMatch && isRestaurantNameMatch) {
-//             composition.filteredRestaurants.value.push(restaurant);
-//             console.log(`found the restaurant: ${restaurant.restaurantName}`)
-//         }
-//     }
-//     sortByRating();
-//     console.log(composition.filteredRestaurants.value)
-// }
-
-// let isSortAscending = true;
-
-// function sortByRating() {
-//     if (composition.filteredRestaurants.value.length > 1) {
-//         const order = isSortAscending ? 1 : -1;
-//         composition.filteredRestaurants.value.sort((a, b) => order * (a.rating - b.rating));
-//         console.log(`Sorted by rating ${isSortAscending ? 'ascending' : 'descending'}`);
-//     }
-// }
-
-// function toggleSortOrder() {
-//     isSortAscending = !isSortAscending;
-//     sortByRating();
-//     composition.sortOrderLabel.value = isSortAscending ? 'Ascending' : 'Descending';
-// }
-
-// function printRestaurant(event) {
-//     // document.getElementById('listed_restaurant').addEventListener('click', function() {
-//         // Get the selected option's value
-//         console.log(event.currentTarget)
-//         console.log(event.currentTarget.getAttribute("restaurant_id"))
-        
-//         // selectedRestaurantName = this.value;
-//         // console.log(selectedRestaurantName)
-//     // });
-    
-// }
 
 </script>
 

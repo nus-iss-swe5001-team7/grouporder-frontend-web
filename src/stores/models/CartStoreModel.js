@@ -22,6 +22,7 @@ export class CartStoreModel {
         if (existingItemIndex === -1) {
             this.cartItems.push({
                 menuId: menu.id,
+                menuImageURL: menu.menuImageURL,
                 name: menu.menuName,
                 quantity: 1,
                 price: menu.menuPrice

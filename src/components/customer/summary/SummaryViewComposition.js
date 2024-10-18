@@ -52,10 +52,6 @@ export class SummaryViewComposition {
         return uiStore.jointGroupOrderId !== null && cartStore.showCart;
     }
 
-    getItemUrl(itemId) {
-        return menuStore.getItemUrl(itemId);
-    }
-
     removeItem(items) {
         cartStore.removeItem(items.menuId);
     }

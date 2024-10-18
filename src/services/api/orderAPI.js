@@ -5,22 +5,20 @@ const Order = '/order-service/groupFoodOrdersAPI/groupFoodOrder';
 export default {
     sendOrder: (order) => Api().post(Order, order),
 
-    getTimerForGroupOrder: (groupOrderId) =>  Api().get(`/timer?parameter=${groupOrderId}`),
+    getGroupOrdersByUserId: (userId) =>  Api().get(`/order-service/groupFoodOrdersAPI/groupOrders?parameter=${userId}`),
 
-    getGroupOrdersByUserId: (userId) =>  Api().get(`/groupOrders?parameter=${userId}`),
+    updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/submittedToRestaurant/${orderId}`),
 
-    updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/submittedToRestaurant/${orderId}`),
+    updateStatusToOrderCancel: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/orderCancel/${orderId}`),
 
-    updateStatusToOrderCancel: (orderId) => Api().put(`/orderCancel/${orderId}`),
+    updateStatusToKitchenPreparing: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/kitchenPreparing/${orderId}`),
 
-    updateStatusToKitchenPreparing: (orderId) => Api().put(`/kitchenPreparing/${orderId}`),
+    updateStatusToReadyForDelivery: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/readyForDelivery/${orderId}`),
 
-    updateStatusToReadyForDelivery: (orderId) => Api().put(`/readyForDelivery/${orderId}`),
+    updateStatusToOnDelivery: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/onDelivered/${orderId}`),
 
-    updateStatusToOnDelivery: (orderId) => Api().put(`/onDelivered/${orderId}`),
+    updateStatusToDelivered: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/delivered/${orderId}`),
 
-    updateStatusToDelivered: (orderId) => Api().put(`/delivered/${orderId}`),
-
-    deleteOrder: (orderId) =>  Api().put(`/deleteOrder?parameter=${orderId}`),
+    deleteOrder: (orderId) =>  Api().put(`/order-service/groupFoodOrdersAPI/deleteOrder?parameter=${orderId}`),
 
 }

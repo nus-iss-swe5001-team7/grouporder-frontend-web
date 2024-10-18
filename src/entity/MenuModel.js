@@ -5,9 +5,8 @@ export class MenuModel {
         this.id = config.id;
         this.menuName = config.menuName;
         this.menuPrice = config.menuPrice;
-        this.menuImageURL = config.menuImageURL;
+        this.menuImageURL = config.menuImageURL|| null;
         this.category = config.category || null;
         this.description = config.description || null;
-        this.restaurantId = config.restaurantId;
     }
 }
