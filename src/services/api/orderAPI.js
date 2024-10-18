@@ -1,24 +1,24 @@
 import Api from "@/services/api/baseAPI";
 
-const Order = '/order-service/groupFoodOrdersAPI/groupFoodOrder';
+const Order = '/groupFoodOrdersAPI/groupFoodOrder';
 
 export default {
     sendOrder: (order) => Api().post(Order, order),
 
-    getGroupOrdersByUserId: (userId) =>  Api().get(`/order-service/groupFoodOrdersAPI/groupOrders?parameter=${userId}`),
+    getGroupOrdersByUserId: (userId) =>  Api().get(`/groupFoodOrdersAPI/groupOrders?parameter=${userId}`),
 
-    updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/submittedToRestaurant/${orderId}`),
+    updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/groupFoodOrdersAPI/submittedToRestaurant/${orderId}`),
 
-    updateStatusToOrderCancel: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/orderCancel/${orderId}`),
+    updateStatusToOrderCancel: (orderId) => Api().put(`/groupFoodOrdersAPI/orderCancel/${orderId}`),
 
-    updateStatusToKitchenPreparing: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/kitchenPreparing/${orderId}`),
+    updateStatusToKitchenPreparing: (orderId) => Api().put(`/groupFoodOrdersAPI/kitchenPreparing/${orderId}`),
 
-    updateStatusToReadyForDelivery: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/readyForDelivery/${orderId}`),
+    updateStatusToReadyForDelivery: (orderId) => Api().put(`/groupFoodOrdersAPI/readyForDelivery/${orderId}`),
 
-    updateStatusToOnDelivery: (orderId) => Api().put(`/delivery-service/deliveryAPI/onDelivered/${orderId}`),
+    updateStatusToOnDelivery: (orderId) => Api().put(`/deliveryAPI/onDelivered/${orderId}`),
 
-    updateStatusToDelivered: (orderId) => Api().put(`/delivery-service/deliveryAPI/delivered/${orderId}`),
+    updateStatusToDelivered: (orderId) => Api().put(`/deliveryAPI/delivered/${orderId}`),
 
-    deleteOrder: (orderId) =>  Api().put(`/order-service/groupFoodOrdersAPI/deleteOrder?parameter=${orderId}`),
+    deleteOrder: (orderId) =>  Api().put(`/groupFoodOrdersAPI/deleteOrder?parameter=${orderId}`),
 
 }
