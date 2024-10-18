@@ -9,16 +9,16 @@ export default {
 
     updateStatusToSubmittedToRestaurant: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/submittedToRestaurant/${orderId}`),
 
-    updateStatusToOrderCancel: (orderId) => Api().put(`/orderCancel/${orderId}`),
+    updateStatusToOrderCancel: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/orderCancel/${orderId}`),
 
-    updateStatusToKitchenPreparing: (orderId) => Api().put(`/kitchenPreparing/${orderId}`),
+    updateStatusToKitchenPreparing: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/kitchenPreparing/${orderId}`),
 
-    updateStatusToReadyForDelivery: (orderId) => Api().put(`/readyForDelivery/${orderId}`),
+    updateStatusToReadyForDelivery: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/readyForDelivery/${orderId}`),
 
     updateStatusToOnDelivery: (orderId) => Api().put(`/delivery-service/deliveryAPI/onDelivered/${orderId}`),
 
     updateStatusToDelivered: (orderId) => Api().put(`/delivery-service/deliveryAPI/delivered/${orderId}`),
 
-    deleteOrder: (orderId) =>  Api().put(`/deleteOrder?parameter=${orderId}`),
+    deleteOrder: (orderId) =>  Api().put(`/order-service/groupFoodOrdersAPI/deleteOrder?parameter=${orderId}`),
 
 }
