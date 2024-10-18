@@ -9,7 +9,7 @@ export default () => {
         url = stagingAPI
     } else {
         // url = 'http://localhost:8765/';
-        url = 'http://group-order-lb-621478777.ap-southeast-1.elb.amazonaws.com';
+        url = 'http://group-order-lb-621478777.ap-southeast-1.elb.amazonaws.com/';
     }
     // console.log(url);
     return axios.create({
