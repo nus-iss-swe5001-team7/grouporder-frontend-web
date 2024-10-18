@@ -15,9 +15,9 @@ export default {
 
     updateStatusToReadyForDelivery: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/readyForDelivery/${orderId}`),
 
-    updateStatusToOnDelivery: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/onDelivered/${orderId}`),
+    updateStatusToOnDelivery: (orderId) => Api().put(`/delivery-service/deliveryAPI/onDelivered/${orderId}`),
 
-    updateStatusToDelivered: (orderId) => Api().put(`/order-service/groupFoodOrdersAPI/delivered/${orderId}`),
+    updateStatusToDelivered: (orderId) => Api().put(`/delivery-service/deliveryAPI/delivered/${orderId}`),
 
     deleteOrder: (orderId) =>  Api().put(`/order-service/groupFoodOrdersAPI/deleteOrder?parameter=${orderId}`),
 
