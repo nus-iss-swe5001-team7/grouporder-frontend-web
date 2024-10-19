@@ -1,6 +1,6 @@
 import Api from "@/services/api/baseAPI";
 
-const allGroupOrder = '/order-service/groupFoodOrdersAPI/getAllGroupOrders';
+const allGroupOrder = '/groupFoodOrdersAPI/getAllGroupOrders';
 
 export default {
     getGroupOrder: () => Api().get(allGroupOrder),
