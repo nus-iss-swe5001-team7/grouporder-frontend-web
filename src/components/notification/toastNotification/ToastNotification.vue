@@ -9,10 +9,11 @@
 
 <script setup>
 import {ToastNotificationComposition} from "@/components/notification/toastNotification/ToastNotificationComposition";
-import {defineProps, defineEmits} from 'vue';
 
+// eslint-disable-next-line no-undef
 const props = defineProps(['message']);
 
+// eslint-disable-next-line no-undef
 const emit = defineEmits(['close']);
 
 const composition = new ToastNotificationComposition(props, emit);

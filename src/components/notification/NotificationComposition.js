@@ -20,9 +20,9 @@ export class NotificationComposition {
     }
 
     addNotification(notification) {
-        const message = `You have an update on order ${notification.groupOrderId}: ${notification.status}`;
+        const message = `You have an update on order ${notification.orderId}: ${notification.status}`;
         this.notifications.value.push({
-            groupOrderId: notification.groupOrderId,
+            orderId: notification.orderId,
             status: notification.status,
             message
         });
@@ -33,7 +33,7 @@ export class NotificationComposition {
     }
 
     connectWebSocket() {
-        const socket = new SockJS('http://localhost:8765/notification/ws');
+        const socket = new SockJS('http://group-order-lb-621478777.ap-southeast-1.elb.amazonaws.com/notification/ws');
         this.stompClient = new Client({
             webSocketFactory: () => socket,
             debug: (str) => {
@@ -57,7 +57,7 @@ export class NotificationComposition {
         this.stompClient.subscribe(`/topic/${this.userId.value}`, (message) => {
             const data = JSON.parse(message.body);
             this.addNotification({
-                groupOrderId: data.messageRequest.groupOrderId,
+                orderId: data.messageRequest.orderId,
                 status: data.messageRequest.status
             });
         });
