@@ -4,6 +4,8 @@
 
     <SideBar></SideBar>
 
+    <Notification></Notification>
+
     <div v-if="activeView.id === applicationViews.CUSTOMER_VIEW.id" class="grid-area">
       <div class="first-view-area view-area">
         <CustomerView class="view-area-item"></CustomerView>
@@ -33,7 +35,7 @@
         <GroupOrderView class="view-area-item"></GroupOrderView>
       </div>
     </div>
-    
+
   </div>
 </template>
 
@@ -46,6 +48,8 @@ import RestaurantView from "@/components/restaurant/RestaurantView.vue";
 import DeliveryView from "@/components/delivery/DeliveryView.vue";
 import CustomerOrderView from "@/components/order/CustomerOrderView.vue";
 import GroupOrderView from '@/components/customer/grouporderview/GroupOrderView.vue';
+import Notification from "@/components/notification/NotificationComponent.vue";
+
 
 const {activeView, applicationViews} = new MainViewComposition();
 </script>
