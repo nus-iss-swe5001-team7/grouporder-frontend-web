@@ -1,5 +1,5 @@
 import {orderStore, userStore} from '@/stores/stores';
-import {computed, onMounted, onUnmounted, ref} from 'vue';
+import {computed, onMounted, onUnmounted, ref, watch} from 'vue';
 import {ORDER_STATUS, RESTAURANT_RATING} from "@/constants/applicationConstants";
 import GroupOrderViewAPI from "@/services/api/groupOrderViewAPI";
 
@@ -16,14 +16,22 @@ export class CustomerOrderViewComposition{
 
         onMounted(() => this.startTimers());
         onUnmounted(() => this.deleteIntervals());
-
     }
 
     startTimers() {
         this.interval = setInterval(() => {
+            let shouldRefresh = false;
+
             this.fetchOrders.value.forEach(order => {
                 order.remainingTime = this.getRemainingTime(order.orderTime);
+                if (order.orderStatus === 'PENDING_USER_JOIN' && order.remainingTime === 0) {
+                    shouldRefresh = true;
+                }
             });
+
+            if (shouldRefresh) {
+                this.refreshOrder();
+            }
         }, 1000);
     }
 
