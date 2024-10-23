@@ -1,5 +1,5 @@
 import {orderStore, userStore} from '@/stores/stores';
-import {computed, onMounted, onUnmounted, ref, watch} from 'vue';
+import {computed, onMounted, onUnmounted, ref} from 'vue';
 import {ORDER_STATUS, RESTAURANT_RATING} from "@/constants/applicationConstants";
 import GroupOrderViewAPI from "@/services/api/groupOrderViewAPI";
 
