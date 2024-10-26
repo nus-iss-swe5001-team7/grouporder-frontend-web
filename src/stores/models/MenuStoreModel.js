@@ -6,13 +6,10 @@ export class MenuStoreModel {
     }
 
     retrieveMenu(restaurantId) {
-        return restaurantId ? restaurantStore.getRestaurantById(restaurantId).menus : [];
-    }
-
-    getItemUrl(itemId) {
-        console.log("getItemUrl :=== menuId: " + itemId);
-        console.log("this.allMenus.find(menu => menu.id === itemId): " + this.allMenus.find(menu => menu.id === itemId));
-        return this.allMenus.find(menu => menu.id === itemId).menuImageURL;
+        if (restaurantId) {
+            this.allMenus = restaurantStore.getRestaurantById(restaurantId).menus;
+        }
+        return this.allMenus;
     }
 
     getUnitPrice(itemId) {
