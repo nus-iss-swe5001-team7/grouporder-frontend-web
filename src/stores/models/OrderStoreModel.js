@@ -102,10 +102,14 @@ export class OrderStoreModel {
                     orderDetailDtoList: groupOrder.orderDetailDtoList,
                     deliveryFee: groupOrder.deliveryFee,
                     deliveryLocation: groupOrder.deliveryLocation,
+                    deliveryAddress: groupOrder.deliveryAddress,
+                    deliveryLatitude: groupOrder.deliveryLatitude,
+                    deliveryLongitude: groupOrder.deliveryLongitude,
                     totalPrice: groupOrder.totalPrice,
                     groupFoodOrderId: groupOrder.groupFoodOrderId,
                     location: groupOrder.location,
                     restaurantName: groupOrder.restaurantName,
+                    restaurantAddress: groupOrder.restaurantAddress,
                     rating: groupOrder.rating
                 });
                 // console.log("groupOrder.groupFoodOrderId :===" + groupOrder.groupFoodOrderId);
