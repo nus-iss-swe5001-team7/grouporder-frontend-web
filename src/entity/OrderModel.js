@@ -9,6 +9,9 @@ export class OrderModel {
         this.orderDetails = config.orderDetails || null;
         this.restaurantId = config.restaurantId || null;
         this.location = config.location || null;
+        this.deliveryAddress = config.deliveryAddress || null;
+        this.deliveryLatitude = config.deliveryLatitude || null;
+        this.deliveryLongitude = config.deliveryLongitude || null;
         this.deliveryFee = config.deliveryFee || null;
     }
 
@@ -21,6 +24,9 @@ export class OrderModel {
             createdTime: this.createdTime,
             orderDetails: this.orderDetails,
             location: this.location,
+            deliveryAddress: this.deliveryAddress,
+            deliveryLatitude: this.deliveryLatitude,
+            deliveryLongitude: this.deliveryLongitude,
             deliveryFee: this.deliveryFee
         };
     }

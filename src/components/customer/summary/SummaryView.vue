@@ -37,6 +37,21 @@
       </select>
     </div>
 
+    <div id="map" style="height: 300px; width: 100%;"></div>
+
+    <!-- Display selected address and coordinates after user selects from the map -->
+      <div class="delivery-location">
+        <p v-if="composition.customerAddress !== ''">Selected Address: {{ composition.customerAddress }}</p>
+        <p v-if="composition.deliveryLatitude">Latitude: {{ composition.deliveryLatitude.value }}</p>
+        <p v-if="composition.deliveryLongitude">Longitude: {{ composition.deliveryLongitude.value }}</p>
+        <!-- New input for unit number -->
+        <div class="unit-Number">
+          <label for="unitNumber">Unit Number:</label>
+          <input type="text" id="unitNumber" v-model="unitNumber" placeholder="Enter unit number" />
+        </div>
+      </div>
+
+
     <div v-if="composition.showDeliveryLocation()"
          class="delivery-location">Delivery Location: {{customerLocation}}
     </div>
@@ -111,14 +126,17 @@
 </template>
 
 <script setup>
-
+import { onMounted } from 'vue';
 import {SummaryViewComposition} from "@/components/customer/summary/SummaryViewComposition";
 import {RESTAURANT_LOCATIONS} from "@/constants/applicationConstants";
 import {cartStore} from "@/stores/stores";
-
 const composition = new SummaryViewComposition();
+onMounted(() => {
+  composition.initMap(); // Initialize the map when the component is mounted
+});
+const {cartItems, showCart, totalPrice, promoStatus, finalPromoPrice, customerLocation, unitNumber, deliveryFee, jointOrder, promoType} = composition;
 
-const {cartItems, showCart, totalPrice, promoStatus, finalPromoPrice, customerLocation, deliveryFee, jointOrder, promoType} = composition;
+
 
 </script>
 
