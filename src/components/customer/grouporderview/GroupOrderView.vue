@@ -39,10 +39,12 @@
                 </header>
                 <div class="order-content">
                     <p><strong>Delivery Location:</strong> {{ order.deliveryLocation }}</p>
+                    <p><strong>Delivery Address:</strong> {{ order.deliveryAddress }}</p>
                     <p><strong>Restaurant:</strong> {{ order.restaurantName }}</p>
                     <img :src="order.imgUrl" alt="Restaurant Image" class="restaurant-image"/>
                     <p><strong>Location:</strong> {{ order.location }}</p>
-                    <p><strong>Rating:</strong> {{ order.rating }}</p>
+                  <p><strong>Restaurant Address:</strong> {{ order.restaurantAddress }}</p>
+                  <p><strong>Rating:</strong> {{ order.rating }}</p>
                     <p><strong>Order Time:</strong> {{ new Date(order.orderTime).toLocaleString() }}</p>
                     <p class="status"><strong>Status:</strong> {{ order.orderStatus }}</p>
                 </div>
