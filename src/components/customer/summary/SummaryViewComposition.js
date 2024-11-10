@@ -167,6 +167,14 @@ export class SummaryViewComposition {
             attribution: '© OpenStreetMap contributors'
         }).addTo(this.map);
 
+        // Custom emoji icon using DivIcon
+        const emojiIcon = L.divIcon({
+            html: '📍',
+            className: 'emoji-icon',
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
+        });
+
         // Add a marker when the user clicks on the map to select a location
         this.map.on('click', async (e) => {
             const { lat, lng } = e.latlng;
@@ -176,8 +184,8 @@ export class SummaryViewComposition {
                 this.map.removeLayer(this.marker);
             }
 
-            // Add a new marker
-            this.marker = L.marker([lat, lng]).addTo(this.map);
+            // Add a new marker with the emoji icon
+            this.marker = L.marker([lat, lng], { icon: emojiIcon }).addTo(this.map);
 
             // Set latitude and longitude refs
             this.deliveryLatitude.value = lat;
@@ -197,6 +205,7 @@ export class SummaryViewComposition {
             }
         });
     }
+
 
     moveMapToRegion(region) {
         if (region && this.regionCoordinates[region]) {

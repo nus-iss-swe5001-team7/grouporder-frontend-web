@@ -37,7 +37,7 @@
       </select>
     </div>
 
-    <div id="map" style="height: 300px; width: 100%;"></div>
+    <div id="map" style="height: 400px; width: 100%;"></div>
 
     <!-- Display selected address and coordinates after user selects from the map -->
       <div class="delivery-location">
