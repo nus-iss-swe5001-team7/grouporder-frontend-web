@@ -1,3 +1,5 @@
+@import '~leaflet/dist/leaflet.css';
+
 .cart-summary {
   justify-content: space-between;
 }
@@ -162,4 +164,13 @@ input:checked + .slider:before {
   background: #ccd9ff;
   position: relative;
   display: inline-block;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+.emoji-icon {
+  font-size: 48px;
 }

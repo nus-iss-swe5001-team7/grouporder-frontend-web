@@ -25,6 +25,12 @@
                     <p><strong>Restaurant:</strong> {{ order.restaurantName }}</p>
                     <img :src="order.imgUrl" alt="Restaurant Image" class="restaurant-image" />
                     <p><strong>Location:</strong> {{ order.location }}</p>
+                    <p v-if="order.orderStatus === 'ON_DELIVERY'">
+                      <strong>Delivery Address:</strong> {{ order.deliveryAddress }}
+                    </p>
+                    <p v-else-if="order.orderStatus === 'READY_FOR_DELIVERY'">
+                      <strong>Restaurant Address:</strong> {{ order.restaurantAddress }}
+                    </p>
                     <p><strong>Rating:</strong> {{ order.rating }}</p>
                     <p><strong>Order Time:</strong> {{ new Date(order.orderTime).toLocaleString() }}</p>
                     <p class="status"><strong>Status:</strong> {{ order.orderStatus }}</p>

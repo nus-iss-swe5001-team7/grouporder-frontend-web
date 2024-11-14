@@ -33,6 +33,8 @@ export class OrderListStoreModel {
                     groupFoodOrderId: groupOrder.groupFoodOrderId,
                     location : groupOrder.location,
                     deliveryLocation: groupOrder.deliveryLocation,
+                    deliveryLatitude: groupOrder.deliveryLatitude,
+                    deliveryLongitude: groupOrder.deliveryLongitude,
                     rating : groupOrder.rating,
                     imgUrl : groupOrder.imgUrl
                 });
