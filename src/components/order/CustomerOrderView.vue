@@ -36,6 +36,7 @@
                             <li class='order-item-desc'>{{item.description}}</li>
                             <li class='order-item'>Price : ${{item.price}}</li>
                             <li class='order-item'>Qty : {{item.quantity}}</li>
+                            <li class='order-item'>{{composition.getPreferencesDisplay(item.preferences)}}</li>
                         </ul>
                     </div>
 

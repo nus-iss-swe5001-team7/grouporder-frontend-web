@@ -31,7 +31,20 @@
   margin-top: 15px;
   margin-left: 20px;
   margin-right: 20px;
+  display: block;
 }
+
+.preference-content {
+  font-size: 12px;
+  margin-right: 20px;
+  margin-top: 15px;
+}
+
+.preference-content span {
+  display: block;
+  margin-bottom: 5px;
+}
+
 
 .quantity-change-button {
   margin-top: 12px;

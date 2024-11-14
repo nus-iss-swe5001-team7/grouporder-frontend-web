@@ -124,4 +124,26 @@ export class CustomerOrderViewComposition{
         this.numberOfUsers = response.data.numberOfUsers;
         this.isMainOrder = response.data.mainOrderId === orderId;
     }
+
+    getPreferencesDisplay(preferences) {
+        if (preferences && typeof preferences === 'object') {
+            return Object.entries(preferences)
+                .filter(([key, value]) => key && value)  // Exclude empty keys and values
+                .map(([key, value]) => `${this.formatPreferenceType(key)}: ${this.formatOption(value)}`)
+                .join('\n');
+        } else {
+            console.error('Invalid preferences object');
+            return '';
+        }
+    }
+
+    formatPreferenceType(preferenceType) {
+        return preferenceType
+            .replace(/([a-z])([A-Z])/g, '$1 $2')
+            .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    formatOption(option) {
+        return option.charAt(0).toUpperCase() + option.slice(1).toLowerCase();
+    }
 }
