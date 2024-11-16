@@ -24,6 +24,9 @@
                       <p>
                         <span>Restaurant Name: {{ order.restaurantName }}</span>
                       </p>
+                      <p>
+                        <span>Restaurant Address: {{ order.restaurantAddress }}</span>
+                      </p>
                     </div>
                 </header>
                 <div class='orders-container'>
@@ -36,11 +39,13 @@
                             <li class='order-item-desc'>{{item.description}}</li>
                             <li class='order-item'>Price : ${{item.price}}</li>
                             <li class='order-item'>Qty : {{item.quantity}}</li>
+                            <li class='order-item'>{{composition.getPreferencesDisplay(item.preferences)}}</li>
                         </ul>
                     </div>
 
                     <div class='orders-container2'>
                         <p><strong>Total Price : </strong>${{order.totalPrice.toFixed(2)}}</p>
+                        <p><strong>Delivery Address : </strong>{{order.deliveryAddress}}</p>
                         <p><strong>Delivery Fee : </strong>${{order.deliveryFee.toFixed(2)}}</p>
                         <p><strong>Order Status : </strong>{{order.orderStatusDesc}}
                           <button v-if="order.orderStatus=='PENDING_USER_JOIN'" title="Refresh to get latest status!" @click="composition.refreshOrder()">

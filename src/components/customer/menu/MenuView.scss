@@ -49,8 +49,7 @@
 }
 
 .cart-quantity {
-  margin-top: 12px;
-  display: inline-block;
+  margin: 12px 10px;
   width: 28px;
   height: 28px;
   border-radius: 2px;
@@ -59,4 +58,9 @@
 
 .menu-price {
   margin-right: 16px;
+}
+
+.preference {
+  display: block;
+  margin-top: 10px;
 }

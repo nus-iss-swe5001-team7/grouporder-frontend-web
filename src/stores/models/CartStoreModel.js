@@ -1,6 +1,7 @@
-import {menuStore, restaurantStore} from "@/stores/stores";
+import {menuStore, restaurantStore, uiStore} from "@/stores/stores";
 import {CartCaretaker} from "@/stores/memento/CartCareTaker";
 import {CartMemento} from "@/stores/memento/CartMemento";
+import {STEPS} from "@/constants/applicationConstants";
 
 export class CartStoreModel {
     constructor() {
@@ -16,8 +17,11 @@ export class CartStoreModel {
         this.caretaker.clearMemento();
     }
 
-    addToCart(menu) {
-        const existingItemIndex = this.cartItems.findIndex(item => item.menuId === menu.id);
+    addToCart(menuWithPreferences) {
+        const { menu, preferences } = menuWithPreferences;
+
+
+        const existingItemIndex = this.cartItems.findIndex(item => item.menuId === menu.id && JSON.stringify(item.preferences) === JSON.stringify(preferences));
 
         if (existingItemIndex === -1) {
             this.cartItems.push({
@@ -25,19 +29,44 @@ export class CartStoreModel {
                 menuImageURL: menu.menuImageURL,
                 name: menu.menuName,
                 quantity: 1,
-                price: menu.menuPrice
+                price: menu.menuPrice,
+                preferences: preferences
             });
         } else {
             this.cartItems[existingItemIndex].quantity++;
             this.cartItems[existingItemIndex].price += menu.menuPrice;
         }
 
-        this.showCart = true;
-        this.saveState();
+        if (!this.hasPreferenceUnselected(this.cartItems)) {
+            this.showCart = true;
+            this.saveState();
+        } else {
+            this.showCart = false;
+        }
+
     }
 
-    removeItem(itemMenuId) {
-        const existingItemIndex = this.cartItems.findIndex(item => item.menuId === itemMenuId);
+    hasPreferenceUnselected(cartItems) {
+        return cartItems.some((item) => {
+            if (item.preferences) {
+                return Object.keys(item.preferences).some(preferenceType => {
+                    return item.preferences[preferenceType] == null || item.preferences[preferenceType] === '';
+                });
+            }
+            return false;
+        })
+    }
+
+    removeItem(itemMenuId, itemPreferences) {
+        let existingItemIndex;
+        if (itemPreferences !== undefined) {
+            existingItemIndex = this.cartItems.findIndex(item =>
+                item.menuId === itemMenuId && item.preferences === itemPreferences
+            );
+        } else {
+            existingItemIndex = this.cartItems.findIndex(item => item.menuId === itemMenuId);
+        }
+
         if (this.cartItems[existingItemIndex].quantity === 1) {
             this.cartItems.splice(existingItemIndex, 1);
         } else {
@@ -47,10 +76,19 @@ export class CartStoreModel {
         this.saveState();
     }
 
-    addItem(itemMenuId) {
-        const existingItemIndex = this.cartItems.findIndex(item => item.menuId === itemMenuId);
+    addItem(itemMenuId, itemPreferences) {
+        let existingItemIndex;
+        if (itemPreferences !== undefined) {
+            existingItemIndex = this.cartItems.findIndex(item =>
+                item.menuId === itemMenuId && item.preferences === itemPreferences
+            );
+        } else {
+            existingItemIndex = this.cartItems.findIndex(item => item.menuId === itemMenuId);
+        }
+
         this.cartItems[existingItemIndex].quantity++;
         this.cartItems[existingItemIndex].price += menuStore.getUnitPrice(itemMenuId);
+
         this.saveState();
     }
 
@@ -63,6 +101,7 @@ export class CartStoreModel {
 
     checkout() {
         this.showCart = this.cartItems.length > 0;
+        uiStore.setCurrentStep(STEPS.SUMMARY);
     }
 
     getTotalPrice() {
@@ -92,7 +131,7 @@ export class CartStoreModel {
     restoreFromMemento(index) {
         const memento = this.caretaker.getMemento(index);
         if (memento) {
-            this.cartItems = JSON.parse(JSON.stringify(memento.cartItems)); // Deep copy of cartItems
+            this.cartItems = JSON.parse(JSON.stringify(memento.cartItems));
             this.showCart = memento.showCart;
             this.discountedTotalPrice = memento.discountedTotalPrice;
         } else {
@@ -103,7 +142,7 @@ export class CartStoreModel {
 
     undo() {
         if (this.caretaker.mementos.length  > 0) {
-            this.caretaker.mementos.pop(); // Remove the current state
+            this.caretaker.mementos.pop();
             const previousMementoIndex = this.caretaker.mementos.length - 1;
             this.restoreFromMemento(previousMementoIndex);
         }
