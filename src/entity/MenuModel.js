@@ -8,5 +8,6 @@ export class MenuModel {
         this.menuImageURL = config.menuImageURL|| null;
         this.category = config.category || null;
         this.description = config.description || null;
+        this.preferences = config.preferences || null;
     }
 }

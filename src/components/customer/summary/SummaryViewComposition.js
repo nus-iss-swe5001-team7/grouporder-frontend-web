@@ -60,6 +60,16 @@ export class SummaryViewComposition {
         watch(this.customerLocation, (customerLocation) => deliveryFeeStore.calculateDeliveryFee(customerLocation));
     }
 
+    formatPreferenceType(preferenceType) {
+        return preferenceType
+            .replace(/([a-z])([A-Z])/g, '$1 $2')
+            .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    formatOption(option) {
+        return option.charAt(0).toUpperCase() + option.slice(1).toLowerCase();
+    }
+
     checkDeliveryLocation() {
         return this.cartItems.value.length > 0 && uiStore.jointGroupOrderId === null;
     }
@@ -69,11 +79,11 @@ export class SummaryViewComposition {
     }
 
     removeItem(items) {
-        cartStore.removeItem(items.menuId);
+        cartStore.removeItem(items.menuId, items.preferences);
     }
 
     addItem(items) {
-        cartStore.addItem(items.menuId);
+        cartStore.addItem(items.menuId, items.preferences);
     }
 
     calculatePrice() {

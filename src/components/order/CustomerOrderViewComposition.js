@@ -16,14 +16,22 @@ export class CustomerOrderViewComposition{
 
         onMounted(() => this.startTimers());
         onUnmounted(() => this.deleteIntervals());
-
     }
 
     startTimers() {
         this.interval = setInterval(() => {
+            let shouldRefresh = false;
+
             this.fetchOrders.value.forEach(order => {
                 order.remainingTime = this.getRemainingTime(order.orderTime);
+                if (order.orderStatus === 'PENDING_USER_JOIN' && order.remainingTime === 0) {
+                    shouldRefresh = true;
+                }
             });
+
+            if (shouldRefresh) {
+                this.refreshOrder();
+            }
         }, 1000);
     }
 
@@ -115,5 +123,27 @@ export class CustomerOrderViewComposition{
         const response = await GroupOrderViewAPI.getInfoForGroupOrder(groupOrderId);
         this.numberOfUsers = response.data.numberOfUsers;
         this.isMainOrder = response.data.mainOrderId === orderId;
+    }
+
+    getPreferencesDisplay(preferences) {
+        if (preferences && typeof preferences === 'object') {
+            return Object.entries(preferences)
+                .filter(([key, value]) => key && value)  // Exclude empty keys and values
+                .map(([key, value]) => `${this.formatPreferenceType(key)}: ${this.formatOption(value)}`)
+                .join('\n');
+        } else {
+            console.error('Invalid preferences object');
+            return '';
+        }
+    }
+
+    formatPreferenceType(preferenceType) {
+        return preferenceType
+            .replace(/([a-z])([A-Z])/g, '$1 $2')
+            .replace(/\b\w/g, char => char.toUpperCase());
+    }
+
+    formatOption(option) {
+        return option.charAt(0).toUpperCase() + option.slice(1).toLowerCase();
     }
 }

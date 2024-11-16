@@ -12,7 +12,14 @@
               class="items-style">
             <div class="cart-items">
               <img class="item" :src="items.menuImageURL" width="50px" height="50px" style="border-radius: 50%; object-fit: cover"/>
-              <span class="items-content">{{ items.name }}</span>
+              <div>
+                <span class="items-content">{{ items.name }}</span>
+                <div class="preference-content">
+                <span v-for="(value, key) in items.preferences" :key="key">
+                    {{ composition.formatPreferenceType(key) }}: {{ composition.formatOption(value) }}<br>
+                </span>
+                </div>
+              </div>
               <div>
                 <button class="quantity-change-button" @click="composition.removeItem(items)" type="button"> -</button>
                 <span class="cart-quantity">{{ items.quantity }}</span>

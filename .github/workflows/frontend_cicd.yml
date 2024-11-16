@@ -45,9 +45,12 @@ jobs:
         run: |
           wget https://github.com/jeremylong/DependencyCheck/releases/download/v10.0.3/dependency-check-10.0.3-release.zip
           unzip dependency-check-10.0.3-release.zip
+          chmod +x dependency-check/bin/dependency-check.sh
       - name: Run scan with ODC
+        env:
+            NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: |
-          dependency-check/bin/dependency-check.sh --out . --scan . > ODC-report
+          dependency-check/bin/dependency-check.sh --out . --scan . | tee ODC-report
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
         with:
