@@ -33,7 +33,7 @@ export class NotificationComposition {
     }
 
     connectWebSocket() {
-        const socket = new SockJS('https://d20bde94kgtbik.cloudfront.net/notification/ws');
+        const socket = new SockJS('https://d1oaevua33l50j.cloudfront.net/notification/ws');
         this.stompClient = new Client({
             webSocketFactory: () => socket,
             debug: (str) => {

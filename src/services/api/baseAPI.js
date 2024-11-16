@@ -9,7 +9,7 @@ export default () => {
         url = stagingAPI
     } else {
         // url = 'http://localhost:8765/';
-        url = 'https://d20bde94kgtbik.cloudfront.net/';
+        url = 'https://d1oaevua33l50j.cloudfront.net/';
     }
     // console.log(url);
     return axios.create({
