@@ -59,6 +59,7 @@ export class GroupOrderViewComposition {
                 cartStore.init();
                 uiStore.jointGroupOrderId = orderId;
                 userStore.customerLocation = response.data.deliveryLocation;
+                userStore.customerAddress = response.data.deliveryAddress;
                 deliveryFeeStore.numberOfUsers = response.data.numberOfUsers;
                 deliveryFeeStore.deliveryFee = response.data.groupOrderDeliveryFee / (deliveryFeeStore.numberOfUsers + 1);
             } else {

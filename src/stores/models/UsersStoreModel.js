@@ -12,6 +12,7 @@ export class UsersStoreModel {
         this.name = "";
         this.role = "";
         this.customerLocation = '';
+        this.customerAddress = '';
     }
 
     setAuthenticated(data) {

@@ -42,6 +42,8 @@ export class SummaryViewComposition {
             }
         });
 
+        this.jointOrderAddress = computed(() => userStore.customerAddress);
+
         this.unitNumber = ref(''); // New ref for the unit number
         this.customerAddress = ref(''); // Add this to hold the address
         this.deliveryLatitude = ref(null);
@@ -169,51 +171,54 @@ export class SummaryViewComposition {
     }
 
     initMap() {
-        // Create the map and set its initial view
-        this.map = L.map('map').setView([1.3521, 103.8198], 13); // Default to Singapore coordinates
+        if (uiStore.jointGroupOrderId === null) {
+            // Create the map and set its initial view
+            this.map = L.map('map').setView([1.3521, 103.8198], 13); // Default to Singapore coordinates
 
-        // Add the OpenStreetMap tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(this.map);
+            // Add the OpenStreetMap tiles
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(this.map);
 
-        // Custom emoji icon using DivIcon
-        const emojiIcon = L.divIcon({
-            html: '📍',
-            className: 'emoji-icon',
-            iconSize: [30, 30],
-            iconAnchor: [15, 15]
-        });
+            // Custom emoji icon using DivIcon
+            const emojiIcon = L.divIcon({
+                html: '📍',
+                className: 'emoji-icon',
+                iconSize: [30, 30],
+                iconAnchor: [15, 15]
+            });
 
-        // Add a marker when the user clicks on the map to select a location
-        this.map.on('click', async (e) => {
-            const { lat, lng } = e.latlng;
+            // Add a marker when the user clicks on the map to select a location
+            this.map.on('click', async (e) => {
+                const { lat, lng } = e.latlng;
 
-            // Remove the previous marker if it exists
-            if (this.marker) {
-                this.map.removeLayer(this.marker);
-            }
-
-            // Add a new marker with the emoji icon
-            this.marker = L.marker([lat, lng], { icon: emojiIcon }).addTo(this.map);
-
-            // Set latitude and longitude refs
-            this.deliveryLatitude.value = lat;
-            this.deliveryLongitude.value = lng;
-
-            // Fetch the address using a geocoding API
-            try {
-                const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
-                const data = await response.json();
-                if (data && data.display_name) {
-                    this.customerAddress.value = data.display_name; // Set the selected address
-                } else {
-                    console.error('Address not found');
+                // Remove the previous marker if it exists
+                if (this.marker) {
+                    this.map.removeLayer(this.marker);
                 }
-            } catch (error) {
-                console.error('Error fetching address:', error);
-            }
-        });
+
+                // Add a new marker with the emoji icon
+                this.marker = L.marker([lat, lng], { icon: emojiIcon }).addTo(this.map);
+
+                // Set latitude and longitude refs
+                this.deliveryLatitude.value = lat;
+                this.deliveryLongitude.value = lng;
+
+                // Fetch the address using a geocoding API
+                try {
+                    const response = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`);
+                    const data = await response.json();
+                    if (data && data.display_name) {
+                        this.customerAddress.value = data.display_name; // Set the selected address
+                    } else {
+                        console.error('Address not found');
+                    }
+                } catch (error) {
+                    console.error('Error fetching address:', error);
+                }
+            });
+        }
+
     }
 
 
