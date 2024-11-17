@@ -3,10 +3,11 @@ name: GroupOrder Frontkend CICD
 on:
   push:
     branches:
-      - "master"
+      - "main"
       - "develop"
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - "main"
     types: [opened, synchronize, reopened]
 
 jobs:
@@ -85,7 +86,7 @@ jobs:
            
   deploy:
     needs: [linting, snyk]
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
@@ -110,7 +111,7 @@ jobs:
           
   zap_scan:
     needs: deploy
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     name: zap scan the web app
     steps:
