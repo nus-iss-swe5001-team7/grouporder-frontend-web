@@ -44,9 +44,10 @@
       </select>
     </div>
 
-    <div id="map" style="height: 400px; width: 100%;"></div>
+    <div v-if="composition.checkDeliveryLocation()">
+      <div id="map" style="height: 400px; width: 100%;"></div>
 
-    <!-- Display selected address and coordinates after user selects from the map -->
+      <!-- Display selected address and coordinates after user selects from the map -->
       <div class="delivery-location">
         <p v-if="composition.customerAddress !== ''">Selected Address: {{ composition.customerAddress }}</p>
         <p v-if="composition.deliveryLatitude">Latitude: {{ composition.deliveryLatitude.value }}</p>
@@ -57,10 +58,11 @@
           <input type="text" id="unitNumber" v-model="unitNumber" placeholder="Enter unit number" />
         </div>
       </div>
+    </div>
 
-
-    <div v-if="composition.showDeliveryLocation()"
-         class="delivery-location">Delivery Location: {{customerLocation}}
+    <div v-if="composition.showDeliveryLocation()">
+      <div class="delivery-location">Delivery Location: {{customerLocation}}</div>
+      <div class="delivery-location">Delivery address: {{jointOrderAddress}}</div>
     </div>
 
     <div class="delivery-location" v-if="deliveryFee > 0 && cartStore.showCart">
@@ -141,7 +143,7 @@ const composition = new SummaryViewComposition();
 onMounted(() => {
   composition.initMap(); // Initialize the map when the component is mounted
 });
-const {cartItems, showCart, totalPrice, promoStatus, finalPromoPrice, customerLocation, unitNumber, deliveryFee, jointOrder, promoType} = composition;
+const {cartItems, showCart, totalPrice, promoStatus, finalPromoPrice, customerLocation, jointOrderAddress, unitNumber, deliveryFee, jointOrder, promoType} = composition;
 
 
 
